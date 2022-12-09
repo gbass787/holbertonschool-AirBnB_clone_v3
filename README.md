@@ -155,6 +155,7 @@ No known bugs at this time.
 
 ## Authors
  Raul Acosta - [Github](https://github.com/Raulj06)
+
  Gerardo Bassat - [Github](https://github.com/gbass787)
 
 Second part of Airbnb: Joann Vuong
