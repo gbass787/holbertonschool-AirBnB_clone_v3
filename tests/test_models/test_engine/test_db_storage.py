@@ -86,3 +86,45 @@ class TestFileStorage(unittest.TestCase):
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_save(self):
         """Test that save properly saves objects to file.json"""
+
+
+class TestDBStorage(unittest.TestCase):
+    """UnitTests for DBStorage"""
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_get(self):
+        """testing that it receives specific object or null"""
+        ins = State(name="New York")
+        ins.save()
+        user = User(email="gerardo@yeezy.gov", password="ye24")
+        user.save()
+        self.assertIs(None, models.storage.get("State", "hello"))
+        self.assertIs(None, models.storage.get("hello", "hello"))
+        self.assertIs(ins, models.storage.get("User", user.id))
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_count(selft):
+        """testing that new objects are being added to dbstorage"""
+        count = models.storage.count()
+        self.assertEqual(models.storage.count("hello"), 0)
+        ins = State(name="New York")
+        ins.save()
+        user = User(email="gerardo@yeezy.gov", password="ye24")
+        user.save()
+        self.assertEqual(models.storage.count("State"), count + 1)
+        self.assertEqual(models.storage.count(), count + 2)
+
+    def test_db_storage_get(self):
+        """checks if instance has been received"""
+        new_o = State(name="Tofu")
+        obj = storage.get("State", "none_id")
+        self.assertIsNone(obj)
+
+    def test_db_storage_count(self):
+        """checks the complete count of objs in dbstorage"""
+        storage.reload()
+        all_count = storage.count(None)
+        self.assertIsInstance(all_count, int)
+        cls_count = storage.count("State")
+        self.assertIsInstance(cls_count, int)
+        self.assertGreaterEqual(all_count, cls_count)
