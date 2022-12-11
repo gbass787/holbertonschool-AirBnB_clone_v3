@@ -6,12 +6,15 @@ from api.v1.views import app_views
 from os import getenv  # to use environmental variables
 from flask import jsonify
 from werkzeug.exceptions import HTTPException  # to use errorhandler
+from flask_cors import CORS
 
 
 # instance app variable from flask class
 app = Flask(__name__)
 # registers the blueprint app_views for usage
 app.register_blueprint(app_views)
+# Cors(origin resource sharing):https://flask-cors.readthedocs.io/en/latest/
+cors = CORS(app, resources={r"/api/*": {"origins": "0.0.0.0"}})
 
 
 @app.teardown_appcontext
