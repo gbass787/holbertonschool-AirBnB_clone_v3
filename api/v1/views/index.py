@@ -18,8 +18,8 @@ def get_status():
     dict = {'status': 'OK'}
     return jsonify(dict)
 
-@app_views.route('/stats')
 
+@app_views.route('/stats')
 def newcount():
     ''' returns teach obj '''
     data = {
