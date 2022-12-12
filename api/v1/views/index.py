@@ -19,6 +19,7 @@ def get_status():
     return jsonify(dict)
 
 @app_views.route('/stats')
+
 def newcount():
     ''' returns teach obj '''
     data = {
@@ -29,4 +30,4 @@ def newcount():
         "states": storage.count(State),
         "users": storage.count(User)
     }
-    return jsonify(data)  
+    return jsonify(data) 
