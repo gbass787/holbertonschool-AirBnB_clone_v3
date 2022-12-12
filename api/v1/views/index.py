@@ -29,4 +29,4 @@ def newcount():
         "states": storage.count(State),
         "users": storage.count(User)
     }
-    return jsonify(data)
+    return jsonify(data)  
